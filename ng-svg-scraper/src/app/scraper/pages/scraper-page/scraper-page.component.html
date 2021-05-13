@@ -13,7 +13,7 @@
         />
         <button class="btn btn-green" type="submit">Go</button>
       </div>
-      <div *ngIf="url_.invalid && (name.dirty || name.touched)" class="py-2">
+      <div *ngIf="url_.invalid && (url_.dirty || url_.touched)" class="py-2">
         <div *ngIf="url_.errors.required">URL is required.</div>
         <div *ngIf="url_.errors.pattern">Not a valid url</div>
       </div>
