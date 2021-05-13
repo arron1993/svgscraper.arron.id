@@ -14,7 +14,7 @@ CORS(app)
 def index():
     url = request.get_json().get("url")
     try:
-        resp = requests.get(url)
+        resp = requests.get(url, timeout=(2, 5))
     except Exception:
         return {"success": False, "svgs": []}
 
