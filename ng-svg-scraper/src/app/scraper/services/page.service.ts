@@ -7,7 +7,7 @@ import { environment } from '../../../environments/environment';
   providedIn: 'root',
 })
 export class PageService {
-  endpoint = '${environment.apiEndpoint}/api/scrape';
+  endpoint = `${environment.apiEndpoint}/api/scrape`;
   constructor(private http: HttpClient) {}
 
   get(url) {

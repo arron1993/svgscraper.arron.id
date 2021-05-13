@@ -1,44 +1,43 @@
 import { Component, OnInit } from '@angular/core';
 import { PageService } from '../../services/page.service';
-import {DomSanitizer} from '@angular/platform-browser'
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-scraper-page',
   templateUrl: './scraper-page.component.html',
-  styleUrls: ['./scraper-page.component.scss']
+  styleUrls: ['./scraper-page.component.scss'],
 })
 export class ScraperPageComponent implements OnInit {
-  fileUrl;
-  url = "https://charity-fundraising-auctions.co.uk/";
+  url = '';
 
   result = null;
-  constructor(private ps: PageService, private sanitizer: DomSanitizer) { }
+  constructor(private ps: PageService, private sanitizer: DomSanitizer) {}
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   scrape() {
-    this.ps.get(this.url).subscribe(resp => {
+    this.ps.get(this.url).subscribe((resp) => {
       this.result = resp;
-    })
+    });
   }
 
   getSVG(svg) {
-    return this.sanitizer.bypassSecurityTrustHtml(svg) ;
+    return this.sanitizer.bypassSecurityTrustHtml(svg);
   }
 
   download(svg) {
     const blob = new Blob([svg], { type: 'application/octet-stream' });
 
-    return this.sanitizer.bypassSecurityTrustResourceUrl(window.URL.createObjectURL(blob));
+    return this.sanitizer.bypassSecurityTrustResourceUrl(
+      window.URL.createObjectURL(blob)
+    );
   }
 
   invert(row) {
-    if (row.classList.contains("bg-dark-grey")) {
-      row.classList.remove("bg-dark-grey");
+    if (row.classList.contains('bg-dark-grey')) {
+      row.classList.remove('bg-dark-grey');
     } else {
-      row.classList.add("bg-dark-grey");
+      row.classList.add('bg-dark-grey');
     }
-
   }
 }
