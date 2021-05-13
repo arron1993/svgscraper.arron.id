@@ -16,7 +16,7 @@ def index():
     try:
         resp = requests.get(url, timeout=(2, 5))
     except Exception:
-        return {"success": False, "svgs": []}
+        return {"success": False, "svgs": [], "reason": "Request timed out"}
 
     if resp.ok:
         soup = BeautifulSoup(resp.content)
