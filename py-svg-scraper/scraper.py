@@ -19,7 +19,7 @@ def index():
         return {"success": False, "svgs": [], "reason": "Request timed out"}
 
     if resp.ok:
-        soup = BeautifulSoup(resp.content)
+        soup = BeautifulSoup(resp.content, features="html.parser")
         svgs = list(map(str, soup.findAll("svg")))
         return {"success": True, "svgs": svgs}
     else:
