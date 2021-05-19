@@ -21,45 +21,60 @@
   </div>
 </div>
 
-<ng-container *ngIf="result; else noResult">
-  <ng-container *ngIf="result.success; else scrapeFailed">
-    <ng-container *ngIf="result.svgs.length > 0; else noSVGs">
-      <div
-        #svgRow
-        class="row my-4 p-3 border bg-light-grey rounded"
-        *ngFor="let svg of result.svgs; let i = index"
-      >
-        <div class="col-12 col-lg-8">
-          <div class="svg-wrapper" [innerHTML]="getSVG(svg)"></div>
-        </div>
+<ng-container *ngIf="!loading; else loadingSpinner">
+  <ng-container *ngIf="result; else noResult">
+    <ng-container *ngIf="result.success; else scrapeFailed">
+      <ng-container *ngIf="result.svgs.length > 0; else noSVGs">
         <div
-          class="col-12 col-lg-4 d-flex align-items-center justify-content-end"
+          #svgRow
+          class="row my-4 p-3 border bg-light-grey rounded"
+          *ngFor="let svg of result.svgs; let i = index"
         >
-          <button class="btn btn-purple me-2" (click)="invert(svgRow)">
-            Invert Background
-          </button>
-          <a [href]="download(svg)" download="svg-{{ i }}.svg">
-            <button class="btn btn-blue">Download</button>
-          </a>
+          <div class="col-12 col-lg-8">
+            <div class="svg-wrapper" [innerHTML]="getSVG(svg)"></div>
+          </div>
+          <div
+            class="
+              col-12 col-lg-4
+              d-flex
+              align-items-center
+              justify-content-end
+            "
+          >
+            <button class="btn btn-purple me-2" (click)="invert(svgRow)">
+              Invert Background
+            </button>
+            <a [href]="download(svg)" download="svg-{{ i }}.svg">
+              <button class="btn btn-blue">Download</button>
+            </a>
+          </div>
         </div>
-      </div>
+      </ng-container>
+      <ng-template #noSVGs>
+        <div class="row my-4 p-3 border bg-light-grey rounded">
+          <div class="col-12">No SVGs found</div>
+        </div>
+      </ng-template>
     </ng-container>
-    <ng-template #noSVGs>
+
+    <ng-template #scrapeFailed>
       <div class="row my-4 p-3 border bg-light-grey rounded">
-        <div class="col-12">No SVGs found</div>
+        <div class="col-12">Error scraping website</div>
       </div>
     </ng-template>
   </ng-container>
 
-  <ng-template #scrapeFailed>
+  <ng-template #noResult>
     <div class="row my-4 p-3 border bg-light-grey rounded">
-      <div class="col-12">Error scraping website</div>
+      <div class="col-12">Enter a URL to begin</div>
     </div>
   </ng-template>
 </ng-container>
 
-<ng-template #noResult>
-  <div class="row my-4 p-3 border bg-light-grey rounded">
-    <div class="col-12">Enter a URL to begin</div>
+<ng-template #loadingSpinner>
+  <div class="row my-4 p-3 bg-light-grey rounded">
+    <div class="col-12">
+      <app-loading-spinner></app-loading-spinner>
+    </div>
   </div>
 </ng-template>

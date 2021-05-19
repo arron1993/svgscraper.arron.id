@@ -9,15 +9,17 @@ import { DomSanitizer } from '@angular/platform-browser';
 })
 export class ScraperPageComponent implements OnInit {
   url = '';
-
+  loading = false;
   result = null;
   constructor(private ps: PageService, private sanitizer: DomSanitizer) {}
 
   ngOnInit(): void {}
 
   scrape() {
+    this.loading = true;
     this.ps.get(this.url).subscribe((resp) => {
       this.result = resp;
+      this.loading = false;
     });
   }
 

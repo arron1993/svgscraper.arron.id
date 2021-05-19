@@ -1,19 +1,11 @@
-/* You can add global styles to this file, and also import other style files */
+@import "./colours";
+
 $theme-colors: (
-    "light-grey": #f4f4f4,
-    "green": hsla(160, 100%, 50%, 1),
-    "blue": hsl(216, 67%, 50%),
-    "dark-grey": hsl(216, 9%, 50%),
-    "purple": hsl(256, 48%, 50%)
+  "light-grey": $light-grey,
+  "green": $green,
+  "blue": $blue,
+  "dark-grey": $dark-grey,
+  "purple": $purple,
 );
 
 @import "bootstrap/scss/bootstrap";
-
-
-
-
-
-
-
-
-
