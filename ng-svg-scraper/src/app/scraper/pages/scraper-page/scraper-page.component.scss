@@ -1,3 +1,6 @@
 .svg-wrapper {
-    width: 10vw;
+  width: 10vw;
+  svg {
+    max-height: 75px;
+  }
 }
