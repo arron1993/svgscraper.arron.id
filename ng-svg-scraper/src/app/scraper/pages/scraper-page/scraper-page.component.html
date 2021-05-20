@@ -27,11 +27,10 @@
       <ng-container *ngIf="result.svgs.length > 0; else noSVGs">
         <div class="row g-0 my-4">
           <div
-            #svgRow
             class="col-12 col-lg-4 row g-0"
             *ngFor="let svg of result.svgs; let i = index"
           >
-            <div class="row g-0 col-12 bg-light-grey border p-3">
+            <div #svgRow class="row g-0 col-12 bg-light-grey border p-3">
               <div class="col-12 col-lg-6">
                 <div class="svg-wrapper" [innerHTML]="getSVG(svg)"></div>
               </div>
