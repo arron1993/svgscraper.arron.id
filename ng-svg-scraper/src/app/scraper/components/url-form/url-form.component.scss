@@ -1,0 +1,28 @@
+@import "bootstrap/scss/functions";
+@import "bootstrap/scss/variables";
+@import "bootstrap/scss/mixins";
+@import "../../../../colours";
+
+.form-container {
+  @include media-breakpoint-up(lg) {
+    background: linear-gradient($purple 150px, #fff 150px);
+  }
+
+  button,
+  input {
+    font-size: 1.25rem;
+  }
+
+  input {
+    border: 0;
+    border-bottom: 2px solid lightgrey;
+  }
+
+  button {
+    text-align: right;
+  }
+
+  .btn-go {
+    color: grey;
+  }
+}

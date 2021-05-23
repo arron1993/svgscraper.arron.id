@@ -1,0 +1,26 @@
+<div class="row g-0 p-3 p-lg-5 pb-lg-0 form-container">
+  <div class="offset-lg-2 col-12 col-lg-8 p-2 p-lg-5 pb-lg-4 bg-white">
+    <form #scraperForm="ngForm" (ngSubmit)="scrape()">
+      <div class="form-group">
+        <input
+          placeholder="https://your-url-here.com"
+          pattern="^(https?://).*"
+          required
+          [(ngModel)]="url"
+          #url_="ngModel"
+          class="form-control"
+          name="url"
+        />
+      </div>
+      <div class="form-group mt-1 row g-0">
+        <div class="col-12 col-lg-6">
+          <div *ngIf="url_.invalid && (url_.dirty || url_.touched)">
+            <div *ngIf="url_.errors.required">URL is required.</div>
+            <div *ngIf="url_.errors.pattern">Not a valid url</div>
+          </div>
+        </div>
+        <button class="btn btn-go col-12 col-lg-6" type="submit">Go</button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,34 +1,14 @@
-<div class="row g-0 p-3 border bg-light-grey rounded">
-  <div class="col-12">
-    <form #scraperForm="ngForm" (ngSubmit)="scrape()">
-      <div class="input-group">
-        <input
-          placeholder="https://your-url-here.com"
-          pattern="^(https?://).*"
-          required
-          [(ngModel)]="url"
-          #url_="ngModel"
-          class="form-control"
-          name="url"
-        />
-        <button class="btn btn-green" type="submit">Go</button>
-      </div>
-      <div *ngIf="url_.invalid && (url_.dirty || url_.touched)" class="py-2">
-        <div *ngIf="url_.errors.required">URL is required.</div>
-        <div *ngIf="url_.errors.pattern">Not a valid url</div>
-      </div>
-    </form>
-  </div>
-</div>
+<app-url-form (loading)="loading = $event" (results)="results = $event">
+</app-url-form>
 
 <ng-container *ngIf="!loading; else loadingSpinner">
-  <ng-container *ngIf="result; else noResult">
-    <ng-container *ngIf="result.success; else scrapeFailed">
-      <ng-container *ngIf="result.svgs.length > 0; else noSVGs">
-        <div class="row g-0 my-4">
+  <ng-container *ngIf="results">
+    <ng-container *ngIf="results.success; else scrapeFailed">
+      <ng-container *ngIf="results.svgs.length > 0; else noSVGs">
+        <div class="row g-0">
           <div
             class="col-12 col-lg-4 row g-0"
-            *ngFor="let svg of result.svgs; let i = index"
+            *ngFor="let svg of results.svgs; let i = index"
           >
             <div #svgRow class="row g-0 col-12 bg-light-grey border p-3">
               <div class="col-12 col-lg-6">
@@ -45,10 +25,7 @@
                 <button class="btn btn-purple me-2" (click)="invert(svgRow)">
                   Invert
                 </button>
-                <a
-                  [href]="download(svg)"
-                  download="svg-{{ hostname }}-{{ i }}.svg"
-                >
+                <a [href]="download(svg)" download="svg-{{ i }}.svg">
                   <button class="btn btn-blue">Download</button>
                 </a>
               </div>
@@ -69,12 +46,6 @@
       </div>
     </ng-template>
   </ng-container>
-
-  <ng-template #noResult>
-    <div class="row g-0 my-4 p-3 border bg-light-grey rounded">
-      <div class="col-12">Enter a URL to begin</div>
-    </div>
-  </ng-template>
 </ng-container>
 
 <ng-template #loadingSpinner>

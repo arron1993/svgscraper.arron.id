@@ -5,10 +5,11 @@ import { ScraperRoutingModule } from './scraper-routing.module';
 import { ScraperPageComponent } from './pages/scraper-page/scraper-page.component';
 import { FormsModule } from '@angular/forms';
 import { LoadingSpinnerComponent } from './components/loading-spinner/loading-spinner.component';
+import { UrlFormComponent } from './components/url-form/url-form.component';
 
 
 @NgModule({
-  declarations: [ScraperPageComponent, LoadingSpinnerComponent],
+  declarations: [ScraperPageComponent, LoadingSpinnerComponent, UrlFormComponent],
   imports: [
     CommonModule,
     ScraperRoutingModule,
