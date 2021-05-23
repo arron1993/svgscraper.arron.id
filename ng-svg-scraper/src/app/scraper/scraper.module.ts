@@ -6,10 +6,11 @@ import { ScraperPageComponent } from './pages/scraper-page/scraper-page.componen
 import { FormsModule } from '@angular/forms';
 import { LoadingSpinnerComponent } from './components/loading-spinner/loading-spinner.component';
 import { UrlFormComponent } from './components/url-form/url-form.component';
+import { AboutPageComponent } from './pages/about-page/about-page.component';
 
 
 @NgModule({
-  declarations: [ScraperPageComponent, LoadingSpinnerComponent, UrlFormComponent],
+  declarations: [ScraperPageComponent, LoadingSpinnerComponent, UrlFormComponent, AboutPageComponent],
   imports: [
     CommonModule,
     ScraperRoutingModule,
